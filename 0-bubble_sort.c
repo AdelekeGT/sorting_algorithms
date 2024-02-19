@@ -9,7 +9,7 @@ void bubble_sort(int *array, size_t size)
 {
 	size_t iterator_a, iterator_b;
 	int temp;
-	bool swapped = false;
+
 
 	if (size < 2)
 		return;
@@ -24,11 +24,10 @@ void bubble_sort(int *array, size_t size)
 				array[iterator_b] = array[iterator_b + 1];
 				array[iterator_b + 1] = temp;
 				print_array(array, size);
-				swapped = true;
+
 			}
 		}
 
-		if (swapped == false)
-			break;
+
 	}
 }
