@@ -1,7 +1,7 @@
 #include "sort.h"
 
 /**
- * helper_partition - partitions data
+ * Lomuto - partitions data
  * @array: array to be partitioned
  * @low_piv: lower pivot
  * @upp_piv: upper pivot
@@ -9,30 +9,36 @@
  *
  * Return: int datatype
 */
-int helper_partition(int *array, int low_piv, int upp_piv, size_t size)
+int Lomuto(int *array, int low_piv, int upp_piv, size_t size)
 {
 	int i, j, temp, pivot;
 
 	pivot = array[upp_piv];
-	i = low_piv - 1;
+	i = low_piv;
 
-	for (j = low_piv; j <= upp_piv; j++)
+	for (j = low_piv; j < upp_piv; j++)
 	{
-		if (array[j] < pivot)
+		if (array[j] <= pivot)
 		{
+			if (i < j)
+			{
+				temp = array[i];
+				array[i] = array[j];
+				array[j] = temp;
+				print_array(array, size);
+			}
 			i++;
-			temp = array[i];
-			array[i] = array[j];
-			array[j] = temp;
 		}
 	}
 
-	temp = array[i + 1];
-	array[i + 1] = array[upp_piv];
-	array[upp_piv] = temp;
-	print_array(array, size);
+	if (upp_piv != i)
+	{
+		array[upp_piv] = array[i];
+		array[i] = pivot;
+		print_array(array, size);
+	}
 
-	return (i + 1);
+	return (i);
 }
 
 /**
@@ -48,7 +54,7 @@ void helper_quick_sort(int *array, int low_piv, int upp_piv, size_t size)
 
 	if (low_piv < upp_piv)
 	{
-		par = helper_partition(array, low_piv, upp_piv, size);
+		par = Lomuto(array, low_piv, upp_piv, size);
 		helper_quick_sort(array, low_piv, par - 1, size);
 		helper_quick_sort(array, par + 1, upp_piv, size);
 	}
