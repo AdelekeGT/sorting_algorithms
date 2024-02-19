@@ -27,7 +27,7 @@ void insertion_sort_list(listint_t **list);
 void selection_sort(int *array, size_t size);
 void quick_sort(int *array, size_t size);
 
-int Lomuto(int *array, int low_piv, int upp_piv, size_t size);
+int helper_partition(int *array, int low_piv, int upp_piv, size_t size);
 void helper_quick_sort(int *array, int low_piv, int upp_piv, size_t size);
 void quick_sort(int *array, size_t size);
 
